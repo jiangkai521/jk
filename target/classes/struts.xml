@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	<struts>
+		<package name="login" extends="struts-default">
+			<interceptors>			
+				<interceptor name="login" class="com.woniu.tools.LoginInter"></interceptor>
+			<interceptor-stack name="all">
+				<interceptor-ref name="login"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>				
+			</interceptor-stack>
+			</interceptors>
+		
+		
+			<action name="login" class="com.woniu.action.UserAction" method="login">				
+				<result name="ok">/Photo.jsp</result>
+			</action>
+			<action name="getA" class="com.woniu.action.UserAction" method="getA">
+			<interceptor-ref name="all"></interceptor-ref>				
+				<result name="list">/Up.jsp</result>
+			</action>
+			<action name="add" class="com.woniu.action.UserAction" method="add">
+			<interceptor-ref name="all"></interceptor-ref>				
+				<result name="ok" type="redirect">getA.action</result>
+			</action>
+			<!-- <action name="addF" class="com.woniu.action.UserAction" method="addF">				
+				<result name="add" type="redirect>/getA.action</result>
+			</action> -->
+			
+		</package>
+	</struts>
